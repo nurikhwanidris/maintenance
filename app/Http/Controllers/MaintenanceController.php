@@ -25,7 +25,7 @@ class MaintenanceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.notice.add');
     }
 
     /**

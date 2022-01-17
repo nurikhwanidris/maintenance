@@ -18,7 +18,7 @@ class LoginController extends Controller
     {
         $logins = $request->validate([
             'username' => 'required',
-            'passwod' => 'required'
+            'password' => 'required'
         ]);
 
         if (Auth::attempt($logins)) {
@@ -27,5 +27,16 @@ class LoginController extends Controller
         }
 
         return back()->with('loginError', 'Failed to login. Please make sure your username and password is correct.');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('success', 'Sesi anda berjaya ditamatkan.');
     }
 }

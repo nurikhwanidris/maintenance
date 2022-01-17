@@ -87,11 +87,11 @@
         <div class="container py-4">
             <header class="pb-3 mb-4 border-bottom">
                 <div class="col-md-8 mx-auto text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/ms/archive/9/93/20090423144020%21Coat_of_arms_of_Malaysia.png"
-                        alt="" srcset="" style="height:auto; width: 100px;" class="mx-2">
-                    <span class="fs-3 fw-bold text-warning text-center">Makluman Penyenggaraan Sistem</span>
-                    <img src="https://img.lawyerment.com/guide/cdn/1/289.gif" alt="" srcset=""
-                        style="height:auto; width: 100px;" class="mx-2">
+                    <img src="https://i.imgur.com/m3IDSO6.png" alt="" srcset="" style="height:auto; width: 100px;"
+                        class="mx-2">
+                    <span class="fs-3 fw-bold text-warning text-center">Makluman Penyelenggaraan Sistem</span>
+                    <img src="https://i.imgur.com/SejXrSF.png" alt="" srcset="" style="height:auto; width: 100px;"
+                        class="mx-2">
                 </div>
             </header>
 
@@ -112,7 +112,7 @@
                             <thead class="">
                                 <tr>
                                     <th class="align-middle text-left" colspan="3">
-                                        Sistem & Tempoh Penyenggaraan
+                                        Sistem & Tempoh Penyelenggaraan
                                     </th>
                                 </tr>
                             </thead>
@@ -146,7 +146,8 @@
                         <hr>
                         {{-- Create function for default text selected --}}
                         <p>
-                            Sepanjang tempoh penyenggaraan ini, sebarang akses dan transaksi kepada sistem/aplikasi akan
+                            Sepanjang tempoh penyelenggaraan ini, sebarang akses dan transaksi kepada sistem/aplikasi
+                            akan
                             tergendala buat sementara waktu. <br>
                             Sebarang kesulitan amatlah dikesali. <br>
                             Sekian, harap maklum.
@@ -169,9 +170,9 @@
             </div>
 
             <footer class="pt-3 mt-4 text-muted border-top text-center">
-                <span class="align-middle ms-2">Hakcipta Terpelihara &copy; {{ date('Y') }} Jabatan Ukur dan Pemetaan
-                    Malaysia
-                    (JUPEM) </span>
+                <span class="align-middle ms-2">
+                    Hakcipta Terpelihara &copy; {{ date('Y') }} Jabatan Ukur dan Pemetaan Malaysia (JUPEM)
+                </span>
             </footer>
         </div>
     </main>

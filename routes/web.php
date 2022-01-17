@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\MaintenanceController;
-use App\Models\Maintenance;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MaintenanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,16 @@ Route::get('/', function () {
 });
 
 // Login route goes here
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::post('/logout', [LoginController::class, 'logout']);
 
 // Admin route goes here
-Route::get('/admin', [MaintenanceController::class, 'index']);
+Route::get('/admin', [MaintenanceController::class, 'index'])->middleware('auth');
+
+// Notice route goes here
+Route::get('/admin/notice/add', [MaintenanceController::class, 'create'])->name('add');
+Route::get('/admin/notice/list', [MaintenanceController::class, 'show'])->name('list');
+Route::get('/admin/notice/add', [MaintenanceController::class, 'create'])->name('add');
