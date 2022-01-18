@@ -45,7 +45,11 @@ class MaintenanceController extends Controller
             'tamatPenyelenggaraan' => 'required',
         ]);
 
-        $validateData['tersedia'] = $request['tersedia'];
+        if ($request['tersedia'] == '') {
+            $validateData['tersedia'] = 0;
+        } else {
+            $validateData['tersedia'] = 1;
+        }
         $validateData['kataAluan'] = $request['kataAluan'];
         $validateData['kataAkhiran'] = $request['kataAkhiran'];
         $validateData['user_id'] = auth()->user()->id;

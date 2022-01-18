@@ -16,10 +16,10 @@
 
 <h2 class="my-2">List of Maintenance Notice</h2>
 <div class="table-responsive">
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-sm table-hover">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col" class="align-middle text-center">#</th>
                 <th scope="col">Notice</th>
                 <th scope="col">Application Affected</th>
                 <th scope="col">Downtime Start</th>
@@ -27,13 +27,13 @@
                 <th scope="col">Created by</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Last Modified at</th>
-                <th scope="col">Action</th>
+                <th scope="col" class="align-middle text-center">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($notices as $notice)
             <tr>
-                <td class="align-middle">{{ $loop->iteration }}</td>
+                <td class="align-middle text-center">{{ $loop->iteration }}</td>
                 <td class="align-middle">{{ $notice->tajukPenyelenggaraan }}</td>
                 <td class="align-middle">
                     @if ($notice->aplikasiPenyelenggaraan == 'ebiz')
@@ -65,14 +65,11 @@
                 <td class="align-middle">
                     {{ $notice->updated_at }}
                 </td>
-                <td class="align-middle">
+                <td class="align-middle text-center">
                     <a href="/admin/notice/view/{{ $notice->id }}" target="_blank" rel="noopener noreferrer"
                         class="btn btn-outline-info btn-sm"><i data-feather="eye"></i> View</a>
-                    <form action="/admin/notice/remove/{{ $notice->id }}" method="post" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-danger btn-sm"><i data-feather="trash"></i>
-                            Delete</button>
-                    </form>
+                    <a href="/admin/notice/edit/{{ $notice->id }}" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-outline-warning btn-sm"><i data-feather="edit"></i> Edit</a>
                 </td>
             </tr>
             @endforeach
