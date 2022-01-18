@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MaintenanceController;
+use App\Models\Maintenance;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,12 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/admin', [MaintenanceController::class, 'index'])->middleware('auth');
 
 // Notice route goes here
-Route::get('/admin/notice/add', [MaintenanceController::class, 'create'])->name('add');
-Route::get('/admin/notice/list', [MaintenanceController::class, 'show'])->name('list');
-Route::get('/admin/notice/add', [MaintenanceController::class, 'create'])->name('add');
+Route::get('/admin/notice/add', [MaintenanceController::class, 'create'])->middleware('auth');
+
+Route::get('/admin/notice/list', [MaintenanceController::class, 'show'])->middleware('auth');
+
+Route::post('/admin/notice/store', [MaintenanceController::class, 'store'])->middleware('auth');
+
+Route::get('/admin/notice/view/{id}', [MaintenanceController::class, 'notice'])->middleware('auth');
+
+Route::post('/admin/notice/remove/{id}', [MaintenanceController::class, 'destroy'])->middleware('auth');

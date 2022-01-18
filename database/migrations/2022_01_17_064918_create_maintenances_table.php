@@ -16,11 +16,13 @@ class CreateMaintenancesTable extends Migration
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('aplikasi');
-            $table->dateTime('mulaPenyelengaraan');
-            $table->dateTime('tamatPenyelengaraan');
-            $table->text('kataAluan');
-            $table->text('kataAkhiran');
+            $table->string('tajukPenyelenggaraan');
+            $table->string('aplikasiPenyelenggaraan');
+            $table->dateTime('mulaPenyelenggaraan');
+            $table->dateTime('tamatPenyelenggaraan');
+            $table->smallInteger('tersedia')->nullable();
+            $table->text('kataAluan')->nullable();
+            $table->text('kataAkhiran')->nullable();
             $table->timestamps();
         });
     }

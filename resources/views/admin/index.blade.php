@@ -1,131 +1,81 @@
 @extends('admin.layouts.main')
 
 @section('content')
-<h2>Section title</h2>
+
+@if (session()->has('success'))
+<div class="alert alert-primary my-4" role="alert">
+    {{ session('success') }}
+</div>
+@endif
+
+@if (session()->has('error'))
+<div class="alert alert-danger my-4" role="alert">
+    {{ session('error') }}
+</div>
+@endif
+
+<h2 class="my-2">List of Maintenance Notice</h2>
 <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
-                <th scope="col">Header</th>
+                <th scope="col">Notice</th>
+                <th scope="col">Application Affected</th>
+                <th scope="col">Downtime Start</th>
+                <th scope="col">Downtime End</th>
+                <th scope="col">Created by</th>
+                <th scope="col">Created at</th>
+                <th scope="col">Last Modified at</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
+            @foreach ($notices as $notice)
             <tr>
-                <td>1,001</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
+                <td class="align-middle">{{ $loop->iteration }}</td>
+                <td class="align-middle">{{ $notice->tajukPenyelenggaraan }}</td>
+                <td class="align-middle">
+                    @if ($notice->aplikasiPenyelenggaraan == 'ebiz')
+                    <span class="badge bg-primary">eBiz</span>
+                    @elseif($notice->aplikasiPenyelenggaraan == 'portal')
+                    <span class="badge bg-success">Portal</span>
+                    @elseif($notice->aplikasiPenyelenggaraan == 'ekadaster')
+                    <span class="badge bg-warning">eKadaster</span>
+                    @elseif($notice->aplikasiPenyelenggaraan == 'staps')
+                    <span class="badge bg-info">STAPS</span>
+                    @elseif($notice->aplikasiPenyelenggaraan == 'myrtknet')
+                    <span class="badge bg-secondary">MyRTKNet</span>
+                    @elseif($notice->aplikasiPenyelenggaraan == 'mygeoserve')
+                    <span class="badge bg-dark">MyGeoServe</span>
+                    @endif
+                </td>
+                <td class="align-middle">
+                    {{ $notice->mulaPenyelenggaraan }}
+                </td>
+                <td class="align-middle">
+                    {{ $notice->tamatPenyelenggaraan }}
+                </td>
+                <td class="align-middle">
+                    {{ $notice->user->name }}
+                </td>
+                <td class="align-middle">
+                    {{ $notice->created_at }}
+                </td>
+                <td class="align-middle">
+                    {{ $notice->updated_at }}
+                </td>
+                <td class="align-middle">
+                    <a href="/admin/notice/view/{{ $notice->id }}" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-outline-info btn-sm"><i data-feather="eye"></i> View</a>
+                    <form action="/admin/notice/remove/{{ $notice->id }}" method="post" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-danger btn-sm"><i data-feather="trash"></i>
+                            Delete</button>
+                    </form>
+                </td>
             </tr>
-            <tr>
-                <td>1,002</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-            </tr>
-            <tr>
-                <td>1,003</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-            </tr>
-            <tr>
-                <td>1,003</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,004</td>
-                <td>text</td>
-                <td>random</td>
-                <td>layout</td>
-                <td>dashboard</td>
-            </tr>
-            <tr>
-                <td>1,005</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>placeholder</td>
-            </tr>
-            <tr>
-                <td>1,006</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,007</td>
-                <td>placeholder</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>irrelevant</td>
-            </tr>
-            <tr>
-                <td>1,008</td>
-                <td>random</td>
-                <td>data</td>
-                <td>placeholder</td>
-                <td>text</td>
-            </tr>
-            <tr>
-                <td>1,009</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
-            </tr>
-            <tr>
-                <td>1,010</td>
-                <td>data</td>
-                <td>rich</td>
-                <td>dashboard</td>
-                <td>tabular</td>
-            </tr>
-            <tr>
-                <td>1,011</td>
-                <td>information</td>
-                <td>placeholder</td>
-                <td>illustrative</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,012</td>
-                <td>text</td>
-                <td>placeholder</td>
-                <td>layout</td>
-                <td>dashboard</td>
-            </tr>
-            <tr>
-                <td>1,013</td>
-                <td>dashboard</td>
-                <td>irrelevant</td>
-                <td>text</td>
-                <td>visual</td>
-            </tr>
-            <tr>
-                <td>1,014</td>
-                <td>dashboard</td>
-                <td>illustrative</td>
-                <td>rich</td>
-                <td>data</td>
-            </tr>
-            <tr>
-                <td>1,015</td>
-                <td>random</td>
-                <td>tabular</td>
-                <td>information</td>
-                <td>text</td>
-            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
