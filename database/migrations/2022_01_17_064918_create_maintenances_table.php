@@ -16,8 +16,8 @@ class CreateMaintenancesTable extends Migration
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('service_id');
             $table->string('tajukPenyelenggaraan');
-            $table->string('aplikasiPenyelenggaraan');
             $table->dateTime('mulaPenyelenggaraan');
             $table->dateTime('tamatPenyelenggaraan');
             $table->smallInteger('tersedia')->nullable();

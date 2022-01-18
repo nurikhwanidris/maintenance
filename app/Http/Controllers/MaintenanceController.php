@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Maintenance;
 use App\Http\Requests\StoreMaintenanceRequest;
 use App\Http\Requests\UpdateMaintenanceRequest;
+use App\Models\Services;
+use App\Http\Requests\StoreServicesRequest;
 
 class MaintenanceController extends Controller
 {
@@ -16,7 +18,15 @@ class MaintenanceController extends Controller
     public function index()
     {
         return view('admin.index', [
-            'notices' => Maintenance::with('user')->latest()->paginate(10),
+            'active' => 'active',
+        ]);
+    }
+
+    public function list()
+    {
+        return view('admin.notice.list', [
+            'active' => 'active',
+            'notices' => Maintenance::with('user', 'services')->latest()->paginate(10),
         ]);
     }
 
@@ -27,7 +37,10 @@ class MaintenanceController extends Controller
      */
     public function create()
     {
-        return view('admin.notice.add');
+        return view('admin.notice.add', [
+            'active' => 'active',
+            'services' => Services::all(),
+        ]);
     }
 
     /**
@@ -40,7 +53,7 @@ class MaintenanceController extends Controller
     {
         $validateData = $request->validate([
             'tajukPenyelenggaraan' => 'required',
-            'aplikasiPenyelenggaraan' => 'required',
+            'service_id' => 'required',
             'mulaPenyelenggaraan' => 'required',
             'tamatPenyelenggaraan' => 'required',
         ]);
@@ -65,9 +78,12 @@ class MaintenanceController extends Controller
      * @param  \App\Models\Maintenance  $maintenance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Maintenance $maintenance)
+    public function show(Maintenance $maintenance)
     {
-        //
+        return view('admin.notice.edit', [
+            'notice' => $maintenance,
+            'services' => Services::all(),
+        ]);
     }
 
     /**
@@ -79,7 +95,22 @@ class MaintenanceController extends Controller
      */
     public function update(UpdateMaintenanceRequest $request, Maintenance $maintenance)
     {
-        //
+        $rules = [
+            'tajukPenyelenggaraan' => 'required',
+            'service_id' => 'required',
+            'mulaPenyelenggaraan' => 'required',
+            'tamatPenyelenggaraan' => 'required',
+        ];
+
+        $validateData = $request->validate($rules);
+
+        $validateData['kataAluan'] = $request['kataAluan'];
+        $validateData['kataAkhiran'] = $request['kataAkhiran'];
+        $validateData['user_id'] = auth()->user()->id;
+
+        Maintenance::where('id', $maintenance->id)->update($validateData);
+
+        return redirect('admin/notice/list')->with('success', 'A maintenance notice has been updated');
     }
 
     /**
@@ -109,5 +140,24 @@ class MaintenanceController extends Controller
             'intro' => $notice->kataAluan,
             'outro' => $notice->kataAkhiran,
         ]);
+    }
+
+    public function addServices()
+    {
+        return view('admin.service.add');
+    }
+
+    public function storeServices(StoreServicesRequest $request)
+    {
+        $validateData = $request->validate([
+            'serviceName' => 'required|unique:services',
+        ]);
+
+        Services::create($validateData);
+
+        return redirect('/admin/service/add')->with(
+            'success',
+            '<b>' . $validateData['serviceName'] . '</b> has been added to the database.'
+        );
     }
 }

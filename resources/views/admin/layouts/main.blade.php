@@ -18,6 +18,9 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
 
+    <!-- CKeditor -->
+    <script src="/assets/js/ckeditor.js"></script>
+
     <!-- Fav Icons -->
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 
@@ -34,6 +37,18 @@
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
+        }
+
+        /*Textbox*/
+        .ck-editor__editable {
+            min-height: 200px;
+            max-height: 200px;
+            min-width: 400px;
+        }
+
+        /*Toolbar*/
+        .ck-editor__top {
+            min-width: 400px;
         }
     </style>
 

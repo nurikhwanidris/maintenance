@@ -34,10 +34,17 @@ Route::get('/admin', [MaintenanceController::class, 'index'])->middleware('auth'
 // Notice route goes here
 Route::get('/admin/notice/add', [MaintenanceController::class, 'create'])->middleware('auth');
 
-Route::get('/admin/notice/list', [MaintenanceController::class, 'show'])->middleware('auth');
+Route::get('/admin/notice/list', [MaintenanceController::class, 'list'])->middleware('auth');
 
 Route::post('/admin/notice/store', [MaintenanceController::class, 'store'])->middleware('auth');
 
 Route::get('/admin/notice/view/{id}', [MaintenanceController::class, 'notice'])->middleware('auth');
 
-Route::post('/admin/notice/remove/{id}', [MaintenanceController::class, 'destroy'])->middleware('auth');
+Route::get('/admin/notice/{maintenance}/edit', [MaintenanceController::class, 'show'])->middleware('auth');
+
+Route::post('/admin/notice/update/{maintenance}', [MaintenanceController::class, 'update'])->middleware('auth');
+
+// Services Route
+Route::get('/admin/service/add', [MaintenanceController::class, 'addServices'])->middleware('auth');
+
+Route::post('/admin/service/store', [MaintenanceController::class, 'storeServices'])->middleware('auth');
