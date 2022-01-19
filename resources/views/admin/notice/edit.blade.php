@@ -52,13 +52,14 @@
                 <span class="fs-5">Maintenance Intro & Outro</span>
             </div>
             <div class="row mb-3">
-                <label for="" class="col-sm-3 col-form-label col-form-label-sm">Use default</label>
+                <label for="" class="col-sm-3 col-form-label col-form-label-sm">Use default introduction</label>
                 <div class="col-sm-9">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" name="tersedia" id="defaultMaintenance"
-                            value="1">
-                        <label class="form-check-label" for="defaultMaintenance">Use default maintenance intro and
-                            outro.</label>
+                        <input class="form-check-input" type="checkbox" @if ($notice->defaultIntro ==1)
+                        checked
+                        @endif name="defaultIntro" id="defaultMaintenance"
+                        value="1">
+                        <label class="form-check-label" for="defaultMaintenance">Use default introduction</label>
                     </div>
                 </div>
             </div>
@@ -67,6 +68,18 @@
                 <div class="col-sm-9">
                     <textarea name="kataAluan" id="kataAluan" cols="30" rows="5"
                         class="form-control form-control-sm">{!! $notice->kataAluan !!}</textarea>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label col-form-label-sm">Use default outroduction</label>
+                <div class="col-sm-9">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" @if ($notice->defaultIntro == 1)
+                        checked
+                        @endif name="defaultOutro" id="defaultMaintenance"
+                        value="1">
+                        <label class="form-check-label" for="defaultMaintenance">Use default outroduction</label>
+                    </div>
                 </div>
             </div>
             <div class="row mb-3">

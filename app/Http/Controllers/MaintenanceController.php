@@ -65,10 +65,15 @@ class MaintenanceController extends Controller
             'tamatPenyelenggaraan' => 'required',
         ]);
 
-        if ($request['tersedia'] == '') {
-            $validateData['tersedia'] = 0;
+        if ($request['defaultIntro'] != 1) {
+            $validateData['defaultIntro'] = 0;
         } else {
-            $validateData['tersedia'] = 1;
+            $validateData['defaultIntro'] = 1;
+        }
+        if ($request['defaultOutro'] != 1) {
+            $validateData['defaultOutro'] = 0;
+        } else {
+            $validateData['defaultOutro'] = 1;
         }
         $validateData['kataAluan'] = $request['kataAluan'];
         $validateData['kataAkhiran'] = $request['kataAkhiran'];
@@ -110,6 +115,17 @@ class MaintenanceController extends Controller
         ];
 
         $validateData = $request->validate($rules);
+
+        if ($request['defaultIntro'] != 1) {
+            $validateData['defaultIntro'] = 0;
+        } else {
+            $validateData['defaultIntro'] = 1;
+        }
+        if ($request['defaultOutro'] != 1) {
+            $validateData['defaultOutro'] = 0;
+        } else {
+            $validateData['defaultOutro'] = 1;
+        }
 
         $validateData['kataAluan'] = $request['kataAluan'];
         $validateData['kataAkhiran'] = $request['kataAkhiran'];
