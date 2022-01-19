@@ -4,6 +4,6 @@
 {{ $tajuk }} <br>
 {{ $aplikasi }} <br>
 {{ $default }} <br>
-{{ $intro }} <br>
-{{ $outro }}
+{!! $intro !!}
+{!! $outro !!}
 @endsection

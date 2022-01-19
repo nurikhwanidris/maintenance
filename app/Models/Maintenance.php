@@ -17,11 +17,11 @@ class Maintenance extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function services()
     {
-        return $this->belongsTo(Services::class);
+        return $this->belongsTo(Services::class, 'service_id');
     }
 }

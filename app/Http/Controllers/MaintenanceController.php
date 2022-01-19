@@ -15,6 +15,13 @@ class MaintenanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function home()
+    {
+        return view('index', [
+            'notice' => Maintenance::with('services')->latest('id')->first(),
+        ]);
+    }
+
     public function index()
     {
         return view('admin.index', [
@@ -131,11 +138,11 @@ class MaintenanceController extends Controller
 
     public function notice($id)
     {
-        $notice = Maintenance::where('id', $id)->first();
+        $notice = Maintenance::with('services')->where('id', $id)->first();
 
         return view('admin.notice.view', [
             'tajuk' => $notice->tajukPenyelenggaraan,
-            'aplikasi' => $notice->aplikasiPenyelenggaraan,
+            'aplikasi' => $notice->services->serviceName,
             'default' => $notice->tersedia,
             'intro' => $notice->kataAluan,
             'outro' => $notice->kataAkhiran,

@@ -17,9 +17,7 @@ use App\Models\Maintenance;
 */
 
 // Home route
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/',[MaintenanceController::class,'home']);
 
 // Login route goes here
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

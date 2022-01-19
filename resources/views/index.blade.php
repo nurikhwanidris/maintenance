@@ -86,10 +86,11 @@
     <main>
         <div class="container py-4">
             <header class="pb-3 mb-4 border-bottom">
-                <div class="col-md-8 mx-auto text-center">
+                <div class="col-md-12 mx-auto text-center">
                     <img src="https://i.imgur.com/m3IDSO6.png" alt="" srcset="" style="height:auto; width: 100px;"
                         class="mx-2">
-                    <span class="fs-3 fw-bold text-warning text-center">Makluman Penyelenggaraan Sistem</span>
+                    <span class="fs-1 fw-bold text-danger text-center text-uppercase">Makluman Penyelenggaraan
+                        Sistem</span>
                     <img src="https://i.imgur.com/SejXrSF.png" alt="" srcset="" style="height:auto; width: 100px;"
                         class="mx-2">
                 </div>
@@ -100,13 +101,17 @@
                     <div class="h-100 p-5 bg-warning border rounded-3">
                         <h5 class="fw-bold text-decoration-underline text-center text-uppercase">
                             {{-- Change this according to the title in CMS --}}
-                            {{ "PENYELENGGARAAN SISTEM eBiz PADA 15 HINGGA 16 JANUARI 2022" }}
+                            {{ $notice->tajukPenyelenggaraan }}
                         </h5>
+                        @if ($notice->kataAluan != NULL)
+                        {!! $notice->kataAluan !!}
+                        @else
                         <p style="text-align: justify;">
                             Salam sejahtera, <br>
                             Pengguna yang dihormati,<br>
                             Capaian kepada sistem/aplikasi berikut sedang diselenggara seperti berikut : -
                         </p>
+                        @endif
                         <hr>
                         <table class="table table-borderless p-0" style="width:60%">
                             <thead class="">
@@ -120,31 +125,37 @@
                                 <tr>
                                     <td class="align-middle text-left" style="width:20%">Sistem Terlibat</td>
                                     <td style="width: 3%; text-align:center" class="align-middle">:</td>
-                                    <td class="align-middle text-left"><span class="fs-6 fw-bold">{{ "eBiz & Portal
-                                            JUPEM"
-                                            }}</span>
+                                    <td class="align-middle text-left">
+                                        <span class="fs-6 fw-bold">
+                                            {{ $notice->services->serviceName }}
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle text-left" style="width:20%">Mula</td>
                                     <td style="width: 10%; text-align:center" class="align-middle">:</td>
-                                    <td class="align-middle text-left"><span class="fs-6 fw-bold">{{ "15 Januari
-                                            2021 | 0900
-                                            Pagi" }}</span>
+                                    <td class="align-middle text-left">
+                                        <span class="fs-6 fw-bold">
+                                            {{ $notice->mulaPenyelenggaraan }}
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle text-left" style="width:20%">Tamat</td>
                                     <td style="width: 10%; text-align:center" class="align-middle">:</td>
-                                    <td class="align-middle text-left"><span class="fs-6 fw-bold">{{ "16 Januari
-                                            2021 | 0000
-                                            Pagi" }}</span>
+                                    <td class="align-middle text-left">
+                                        <span class="fs-6 fw-bold">
+                                            {{ $notice->tamatPenyelenggaraan }}
+                                        </span>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <hr>
                         {{-- Create function for default text selected --}}
+                        @if ($notice->kataAkhiran != NULL)
+                        {!! $notice->kataAkhiran !!}
+                        @else
                         <p>
                             Sepanjang tempoh penyelenggaraan ini, sebarang akses dan transaksi kepada sistem/aplikasi
                             akan
@@ -152,6 +163,7 @@
                             Sebarang kesulitan amatlah dikesali. <br>
                             Sekian, harap maklum.
                         </p>
+                        @endif
                     </div>
                 </div>
             </div>

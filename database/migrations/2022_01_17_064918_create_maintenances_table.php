@@ -20,7 +20,8 @@ class CreateMaintenancesTable extends Migration
             $table->string('tajukPenyelenggaraan');
             $table->dateTime('mulaPenyelenggaraan');
             $table->dateTime('tamatPenyelenggaraan');
-            $table->smallInteger('tersedia')->nullable();
+            $table->smallInteger('defaultIntro');
+            $table->smallInteger('defaultOutro');
             $table->text('kataAluan')->nullable();
             $table->text('kataAkhiran')->nullable();
             $table->timestamps();

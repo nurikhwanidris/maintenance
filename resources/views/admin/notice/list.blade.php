@@ -36,7 +36,7 @@
                 <td class="align-middle text-center">{{ $loop->iteration }}</td>
                 <td class="align-middle">{{ $notice->user->name }}</td>
                 <td class="align-middle">
-                    {{ $notice->service_id }}
+                    {{ $notice->services->serviceName }}
                 </td>
                 <td class="align-middle">
                     {{ $notice->mulaPenyelenggaraan }}
