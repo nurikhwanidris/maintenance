@@ -19,6 +19,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <!-- Moment JS -->
+    <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 
@@ -87,12 +90,12 @@
         <div class="container py-4">
             <header class="pb-3 mb-4 border-bottom">
                 <div class="col-md-12 mx-auto text-center">
-                    <img src="https://i.imgur.com/m3IDSO6.png" alt="" srcset="" style="height:auto; width: 100px;"
+                    <img src="https://i.imgur.com/m3IDSO6.png" alt="" srcset="" style="height:auto; width: 80px;"
                         class="mx-2">
+                    <img src="https://i.imgur.com/SejXrSF.png" alt="" srcset="" style="height:auto; width: 80px;"
+                        class="mx-2"><br>
                     <span class="fs-1 fw-bold text-danger text-center text-uppercase">Makluman Penyelenggaraan
                         Sistem</span>
-                    <img src="https://i.imgur.com/SejXrSF.png" alt="" srcset="" style="height:auto; width: 100px;"
-                        class="mx-2">
                 </div>
             </header>
 
@@ -135,18 +138,14 @@
                                     <td class="align-middle text-left" style="width:20%">Mula</td>
                                     <td style="width: 10%; text-align:center" class="align-middle">:</td>
                                     <td class="align-middle text-left">
-                                        <span class="fs-6 fw-bold">
-                                            {{ $notice->mulaPenyelenggaraan }}
-                                        </span>
+                                        <span class="fs-6 fw-bold" id="dateTimeStart"></span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="align-middle text-left" style="width:20%">Tamat</td>
                                     <td style="width: 10%; text-align:center" class="align-middle">:</td>
                                     <td class="align-middle text-left">
-                                        <span class="fs-6 fw-bold">
-                                            {{ $notice->tamatPenyelenggaraan }}
-                                        </span>
+                                        <span class="fs-6 fw-bold" id="dateTimeEnd"></span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -188,6 +187,24 @@
             </footer>
         </div>
     </main>
+    <script>
+        // Change the date format
+
+        // Use locale
+        const waktuTempatan = moment().locale('ms');
+
+        // Get the date time stamp
+        const getDateTimeStart = '{{ $notice->mulaPenyelenggaraan }}';
+        const getDateTimeEnd = '{{ $notice->tamatPenyelenggaraan }}';
+
+        // Set everything
+        const dateTimeStart = moment(getDateTimeStart).locale(waktuTempatan).format('DD MMMM YYYY, h:MM A');
+        const dateTimeEnd = moment(getDateTimeEnd).locale(waktuTempatan).format('DD MMMM YYYY, h:MM A');
+
+        // Relay the infomation
+        document.getElementById('dateTimeStart').innerHTML = dateTimeStart;
+        document.getElementById('dateTimeEnd').innerHTML = dateTimeEnd;
+    </script>
 </body>
 
 </html>
